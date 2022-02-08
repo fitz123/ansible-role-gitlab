@@ -1,3 +1,8 @@
+# To enable Grafana’s metrics API with basic authentication:
+grafana['metrics_enabled'] = true
+grafana['metrics_basic_auth_username'] = 'grafana_metrics'
+grafana['metrics_basic_auth_password'] = "{{ gitlab_grafana_metrics_password }}"
+
 # The URL through which GitLab will be accessed.
 external_url "{{ gitlab_external_url }}"
 gitlab_rails['gitlab_ssh_host'] = "{{ gitlab_ssh_host }}"

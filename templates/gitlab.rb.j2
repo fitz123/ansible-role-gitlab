@@ -1,7 +1,34 @@
-# To enable Grafana’s metrics API with basic authentication:
-grafana['metrics_enabled'] = true
-grafana['metrics_basic_auth_username'] = 'grafana_metrics'
-grafana['metrics_basic_auth_password'] = "{{ gitlab_grafana_metrics_password }}"
+# To use an external Prometheus server
+prometheus['enable'] = false
+
+# node_exporter['listen_address'] = '0.0.0.0:9100'
+gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8', '10.0.0.0/16']
+gitlab_rails['prometheus_address'] = '10.77.30.114:9090'
+
+gitlab_workhorse['prometheus_listen_addr'] = "0.0.0.0:9229"
+
+# Rails nodes
+gitlab_exporter['listen_address'] = '0.0.0.0'
+gitlab_exporter['listen_port'] = '9168'
+
+# Sidekiq nodes
+sidekiq['listen_address'] = '0.0.0.0'
+
+# Redis nodes
+redis_exporter['listen_address'] = '0.0.0.0:9121'
+
+# PostgreSQL nodes
+postgres_exporter['listen_address'] = '0.0.0.0:9187'
+
+# Gitaly nodes
+gitaly['prometheus_listen_addr'] = "0.0.0.0:9236"
+
+nginx['status']['options'] = {
+      "server_tokens" => "off",
+      "access_log" => "off",
+      "allow" => "10.77.30.114",
+      "deny" => "all",
+}
 
 # The URL through which GitLab will be accessed.
 external_url "{{ gitlab_external_url }}"

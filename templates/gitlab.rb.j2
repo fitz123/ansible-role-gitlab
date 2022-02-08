@@ -2,7 +2,7 @@
 prometheus['enable'] = false
 
 # node_exporter['listen_address'] = '0.0.0.0:9100'
-gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8', '10.0.0.0/16']
+gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8', '10.0.0.0/8']
 gitlab_rails['prometheus_address'] = '10.77.30.114:9090'
 
 gitlab_workhorse['prometheus_listen_addr'] = "0.0.0.0:9229"
